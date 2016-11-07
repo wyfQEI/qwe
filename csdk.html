@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="js/jquery-3.1.1.js"></script>
+</head>
+<body>
+    <input type="txt" name="" id="userName">
+    <input type="password" name="" id="userPass">
+    <input type="button" name="" id="btn1" value="登录">
+    <input type="button" name="" id="btn2" value="注册">
+    <input type="button" name="" id="btn3" value="检测是否已经注册">
+    <script>
+        $("#btn2").on("click",function(){
+            var url="http://10.17.158.243:8099/User/registerGet";
+            var uName=$("#userName").val();
+            var uPass=$("#userPass").val();
+            $.ajax(url,{
+                data:{
+                    name:uName,
+                    password:uPass
+                },
+                success:function(data){
+                    alert(data);
+                }
+            });
+        });
+         $("#btn1").on("click",function(){
+            var url="http://10.17.158.243:8099/User/loginGet";
+            var uName=$("#userName").val();
+            var uPass=$("#userPass").val();
+            $.ajax(url,{
+                data:{
+                    name:uName,
+                    password:uPass
+                },
+                success:function(data){
+                    alert(data);
+                }
+            });
+        });
+
+        $("#btn1").on("click",function(){
+            var uName=$("#userName").val();
+            var uPass=$("#userPass").val();
+            var url="../../User/loginGet";
+            $.ajax(url,{
+                data:{
+                    name:uName,
+                    password:uPass
+                },
+                success:function(data){
+                    if(data==1){
+                        alert("成功登录");
+                    }else{
+                        alert("用户名或密码不正确");
+                    }
+                }
+            });
+        });
+
+        $("#btn2").on("click",function(){
+            var uName=$("#userName").val();
+            var uPass=$("#userPass").val();
+            var url="../../User/registerGet";
+            $.ajax(url,{
+                data:{
+                    name:uName,
+                    password:uPass
+                },
+                success:function(data){
+                    alert(data);
+                }
+            });
+        });
+        $("#btn3").on("click",function(){
+            var uName=$("#userName").val();
+            var url="../../User/CheckUserNameGet";
+            $.ajax(url,{
+                data:{
+                    username:uName,
+                },
+                success:function(data){
+                    if(data==1){
+                        alert("用户名已经被注册了")
+                    }else{
+
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
